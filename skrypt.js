@@ -1,20 +1,46 @@
-function Oblicz() {
-    let liczbaN=parseInt(document.getElementById("liczba").value);
-    let liczbaFn=0;
-    if(liczbaN<=2){
-        Fn=1;
+function obliczModulo(){
+    let liczba=parseInt(document.getElementById("liczba").value);
+    if(liczba%4==0){
+        document.getElementById("wynikModulo").value="Liczba jest podzielna przez 4";
     }else{
-        let liczbai=3;
-        let liczbaF1=1;
-        let liczbaF2=1;
-
-        while(liczbai<=liczbaN){
-            liczbaFn=liczbaF1+liczbaF2;
-            liczbaF1=liczbaF2;
-            liczbaF2=liczbaFn;
-            liczbai=liczbai+1;
-
-        }
+        document.getElementById("wynikModulo").value="Liczba NIE JEST podzielna przez 4";
+    
     }
-    document.getElementById("wynik").value=liczbaFn;
+
+    if(liczba%5==0){
+        document.getElementById("wynikModulo1").value="Liczba jest podzielna przez 5";
+    }else{
+        document.getElementById("wynikModulo1").value="Liczba NIE JEST podzielna przez 5";
+    
+    }
+
+    if(liczba%9==0){
+        document.getElementById("wynikModulo2").value="Liczba jest podzielna przez 9";
+    }else{
+        document.getElementById("wynikModulo2").value="Liczba NIE JEST podzielna przez 9";
+    
+    }
+
+}
+
+function sumaCyfrLiczby(liczba){
+    let sumaCyfr=0;
+    while(liczba>0){
+        sumaCyfr=sumaCyfr+liczba%10;
+        liczba=Math.floor(liczba/10);
+    }
+    return sumaCyfr;
+}
+function czyPodzielna(liczba){
+    let sumaCyfr=sumaCyfrLiczby(liczba);
+    let wynik="Liczba NIE JEST podzielna przez 3 - Rekurencja";
+    if(sumaCyfr==3 || sumaCyfr==6 || sumaCyfr==9 ){
+        wynik="Liczba jest podzielna przez 3 - Rekurencja";
+    }
+    return wynik;
+}
+function obliczRekurencja(){
+    let liczba=parseInt(document.getElementById("liczba").value);
+    let odpowiedz=czyPodzielna(liczba);
+    document.getElementById("wynikRekurencja").value=odpowiedz;
 }
